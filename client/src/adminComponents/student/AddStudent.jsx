@@ -5,6 +5,7 @@ import {
   deleteStudent,
   updateStudent,
 } from "../../action/admin";
+import '../style.css';
 
 function Addmember({ currentId, setCurrentId }) {
   const [profile, setProfile] = useState({
@@ -113,8 +114,14 @@ function Addmember({ currentId, setCurrentId }) {
         />
         <button type="submit">Add</button>
         <div>
-          {currentId ? <button onClick={handleDelete}>Delete</button> : null}
-          <button onClick={clear}>Clear</button>
+          {currentId ? (
+            <>
+              <button className='d' onClick={handleDelete}>Delete</button>
+              <button onClick={clear}>Cancel</button>{" "}
+            </>
+          ) : (
+            <button onClick={clear}>Clear</button>
+          )}
         </div>
       </form>
     </>

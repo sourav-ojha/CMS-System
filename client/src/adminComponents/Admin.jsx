@@ -10,7 +10,7 @@ import { fetchStudents, fetchTeachers, sortByDept } from "../action/admin";
 function Admin() {
   const [currentId, setCurrentId] = useState(null);
   const [toogle, settoogle] = useState(true);
-  const [dept, setDept] = useState('ALL'); 
+  const [dept, setDept] = useState("ALL");
   // const Data = useSelector((state) => state.group);
   const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ function Admin() {
       dispatch(fetchStudents());
       dispatch(sortByDept(dept));
     }
-    
+
     console.log("dept : ", dept);
   }, [toogle, dispatch, dept]);
 
@@ -51,14 +51,21 @@ function Admin() {
           Student
         </div>
       </div>
-      <div>
-        Sort By Department 
-        <select name="dept" value={dept} onChange={(e) => setDept(e.target.value)} id="dept">
-          <option value="ALL" >ALL</option>
-          <option value="BCA" >BCA</option>
-          <option value="BSc" >BSc</option>
-        </select>
-      </div>
+      {!toogle ? (
+        <div className="dept">
+          Sort By Department :
+          <select
+            name="dept"
+            value={dept}
+            onChange={(e) => setDept(e.target.value)}
+            id="dept"
+          >
+            <option value="ALL">ALL</option>
+            <option value="BCA">BCA</option>
+            <option value="BSc">BSc</option>
+          </select>
+        </div>
+      ) : null}
       <div className="content">
         {toogle ? (
           <>
@@ -68,7 +75,7 @@ function Admin() {
         ) : (
           <>
             <Students setCurrentId={setCurrentId} />
-            <AddStudent currentId={currentId} setCurrentId={setCurrentId}  />
+            <AddStudent currentId={currentId} setCurrentId={setCurrentId} />
           </>
         )}
       </div>

@@ -100,7 +100,7 @@ function Addmember({ currentId, setCurrentId }) {
         />
         <button type="submit">Add</button>
         <div>
-          {currentId ? <button onClick={handleDelete}>Delete</button> : null}
+          {currentId ? <button className='d' onClick={handleDelete}>Delete</button> : null}
           <button onClick={clear}>{currentId ? `cancel` :`Clear`  }</button>
         </div>
       </form>

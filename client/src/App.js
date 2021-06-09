@@ -1,5 +1,5 @@
 import React from 'react'
-import Admin from './components/Admin'
+import Admin from './adminComponents/Admin'
 import styles from './styles.module.css';
 
 

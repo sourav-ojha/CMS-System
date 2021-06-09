@@ -1,7 +1,14 @@
+.edit{
+  text-align: center ;
+  width: fit-content;
+}
+
 .teacher {
   flex: 1;
-  padding: 10px;
-  background-color: blue;
+  /* padding: 10px; */
+  background-color: #0081CF;
+  color: white;
+  font-weight: 300;
   /* width: 700px; */
   height: 70vh;
   margin-top: 20px;
@@ -9,31 +16,74 @@
   overflow: scroll;
 }
 
-.teacher_table {
+/* .teacher_table {
   padding: 10px;
   width: 100%;
   text-align: left;
+  overflow: scroll;
 }
-
-th {
+thead {
   border-bottom: 1px solid black;
   height: 40px;
   padding: 10px;
 }
+tbody{
+  height: 50vh;
+  overflow: scroll;
+  background-color: rgb(10, 10, 10);
+}
 
 td {
     padding: 10px;
+} */
+
+
+
+
+.fixed_header {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.tr:hover{
-    border: 1px solid black;
-    background-color: red;
-    cursor: pointer;
-
+.fixed_header tbody {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 60vh;
 }
 
-button {
+.fixed_header thead tr {
+  display: block;
+  padding: 10px;
+}
+
+.fixed_header thead {
+  background: #2C73D2;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.fixed_header th,
+.fixed_header td {
+  padding: 10px;
+  /* text-align: left; */
+  width: 150px;
+}
+
+.fixed_header tbody tr{
+  padding: 5px;
+  height: 40px;
+}
+
+
+.edit:hover{
+  color: white;
+  background-color: green;
+}
+
+.tr:hover {
+  background-color: #ffffff;
   cursor: pointer;
-  margin-top: 10px;
-  margin-left: 10px;
+  color: #0075C4;
 }
+

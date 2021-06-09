@@ -9,18 +9,22 @@ function Teachers({ setCurrentId }) {
     <h2>No Teachers Found</h2>
   ) : (
     <div className={styles.teacher}>
-      <table className={styles.teacher_table}>
-        <tr>
-          <th>User Name </th>
-          <th>Full Name </th>
-          <th>Phone No </th>
-          <th>Email ID </th>
-        </tr>
-        {teacher.map((t) => (
-          <tr key={t._id} className={styles.tr}>
-            <Teacher teacher={t} setCurrentId={setCurrentId} />
+      <table className={styles.fixed_header }>
+        <thead>
+          <tr>
+            <th>User Name </th>
+            <th>Full Name </th>
+            <th>Phone No </th>
+            <th>Email ID </th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {teacher.map((t) => (
+            <tr key={t._id} className={styles.tr}>
+              <Teacher teacher={t} setCurrentId={setCurrentId} />
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
