@@ -1,0 +1,66 @@
+.container {
+  margin: 10px;
+  background: rgb(156, 199, 240);
+  color: white;
+  height: 90vh;
+  width: 90vw;
+}
+
+.header {
+  font-size: 1.3rem;
+  align-items: center;
+  font-weight: 800;
+  padding: 20px;
+}
+
+.bar {
+  display: flex;
+  justify-content: safe;
+}
+.toogle {
+  padding: 10px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+.selected{
+  background-color: yellow;
+  color: black;
+}
+
+.content{
+  display: flex;
+}
+
+form{
+/* margin:50px 0px 0px 10px; */
+/* height: 40vh; */
+margin-top: 20px;
+padding: 20px;
+color: black;
+width: 16rem;
+position: relative;
+right: 5%;
+background-color: white;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+input{
+  width: 85%;
+  height: 25px;
+  margin: 0px 10px 10px 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+button{
+  height: 30px;
+  border-radius: 5px;
+  width: 100px;
+  font-size: 1.3rem;
+  background-color: rgb(63, 63, 247);
+  color: white;
+}
