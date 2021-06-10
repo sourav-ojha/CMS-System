@@ -47,22 +47,22 @@ export const createTeachers = async (req, res) => {
 };
 
 export const updateTeacher = async (req, res) => {
-  const { id: _id } = req.params;
+  const { id } = req.params;
   const data = req.body;
-  if (!mongoose.Types.ObjectId.isValid(_id)) return res.send("no id");
 
-  const updateData = await Teacher.findByIdAndUpdate(_id, data, { new: true });
-  console.log(updateData);
+  if (!mongoose.Types.ObjectId.isValid(id)) return res.send("no id");
+  
+  const updateData = await Teacher.findByIdAndUpdate(id, data, {new : true});
+  
   res.json(updateData);
 };
 
 export const updateStudent = async (req, res) => {
-  const { id: _id } = req.params;
+  const { id } = req.params;
   const data = req.body;
-  if (!mongoose.Types.ObjectId.isValid(_id)) return res.send("no id");
+  if (!mongoose.Types.ObjectId.isValid(id)) return res.send("no id");
   
-  const updateData = await Student.findByIdAndUpdate(_id, data, { new: true });
-  console.log(updateData);
+  const updateData = await Student.findByIdAndUpdate(id, data, {new : true});
   res.json(updateData);
 };
 

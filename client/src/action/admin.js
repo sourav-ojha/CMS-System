@@ -6,6 +6,7 @@ export const fetchTeachers = () => async(dispatch) => {
     try {
         const { data } = await api.fetchTeachers();
         const action = { type: 'FETCH_ALL', payload: data}
+        console.log(data);
         dispatch(action);
     } catch (error) {
         console.log(error);
@@ -23,7 +24,9 @@ export const createTeacher = (newMember) => async (dispatch) => {
 
 export const updateTeacher = (id, update) => async (dispatch) => {
     try {
-        const { data } = await api.updateTeacher(id, update)
+        console.log("beafore action : ", id, update);
+        const { data } = await api.updateTeacher(id, update);
+        console.log("after action : ", id, data);
         dispatch( {type: 'UPDATE', payload: data})
     } catch (error) {
         console.log(error);
@@ -63,6 +66,7 @@ export const createStudent = (newMember) => async (dispatch) => {
 export const updateStudent = (id, update) => async (dispatch) => {
     try {
         const { data } = await api.updateStudent(id, update)
+        console.log(data);
         dispatch( {type: 'UPDATE', payload: data})
     } catch (error) {
         console.log(error);

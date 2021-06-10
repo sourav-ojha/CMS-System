@@ -1,4 +1,8 @@
 body{
     margin: 0;
     background: #EBF5FF;
+    /* background-image: linear-gradient(to left bottom, #5493f3, #789ff6, #94acf8, #adbafb, #c2c8fe); */
+    /* background-image: linear-gradient(to left top, #39445f, #3e5683, #3f69aa, #387dd2, #2191fb); */
+    /* background-image: linear-gradient(to bottom, #dfe8f5, #b0c7ec, #82a7e3, #5386d8, #0066cc); */
+    height: 100vh;
 }

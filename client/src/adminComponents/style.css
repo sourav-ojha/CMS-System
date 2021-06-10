@@ -28,7 +28,6 @@
 }
 .selected{
   background-color: #2191FB;
-  
   color: white;
 }
 
@@ -39,8 +38,6 @@
 }
 
 form{
-/* margin:50px 0px 0px 10px; */
-/* height: 40vh; */
 margin-top: 20px;
 padding: 20px;
 color: black;

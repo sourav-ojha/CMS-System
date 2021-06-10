@@ -1,6 +1,6 @@
 import React from "react";
 import Student from "./student";
-import styles from "../teacher/style.module.css";
+import styles from "../style.module.css";
 import { useSelector } from "react-redux";
 
 function Students({ setCurrentId }) {
@@ -21,7 +21,9 @@ function Students({ setCurrentId }) {
             </tr>
           </thead>
           <tbody>
-            {student.map((s) => (
+            {student
+            .sort((a, b) => a.fullname.localeCompare(b.fullname))
+            .map((s) => (
               <tr key={s._id} className={styles.tr}>
                 <Student student={s} setCurrentId={setCurrentId} />
               </tr>

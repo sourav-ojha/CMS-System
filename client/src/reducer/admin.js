@@ -11,9 +11,9 @@ export default (state = [], action) => {
     case "DELETE":
       return state.filter((t) => t._id !== action.payload);
     case "SORT_BY_DEPT_BCA":
-      return state.filter((t) => t.course === "BCA" )
+      return state.filter((t) => t.course === "BCA");
     case "SORT_BY_DEPT_BSc":
-      return state.filter((t) => t.course === "BSc" )
+      return state.filter((t) => t.course === "BSc");
     default:
       return state;
   }

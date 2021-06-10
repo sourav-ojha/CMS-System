@@ -24,6 +24,7 @@ function Addmember({ currentId, setCurrentId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentId) {
+      console.log('add teachers page : ',currentId, profile)
       dispatch(updateTeacher(currentId, profile));
     } else {
       dispatch(createTeacher(profile));

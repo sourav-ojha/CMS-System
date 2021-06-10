@@ -1,4 +1,5 @@
 import React from "react";
+import styles from '../style.module.css'
 function student({ student, setCurrentId }) {
 
   return (
@@ -9,7 +10,7 @@ function student({ student, setCurrentId }) {
         <td>{student.phno}</td>
         <td>{student.email}</td>
         <td>{student.course}</td>
-        <td onClick={() => setCurrentId(student._id) }>Edit</td>
+        <td className={styles.edit} onClick={() => setCurrentId(student._id) }>Edit</td>
      </>
 
   );

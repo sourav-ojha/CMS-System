@@ -1,19 +1,20 @@
-.edit{
-  text-align: center ;
+.edit {
+  text-align: center;
   width: fit-content;
 }
 
 .teacher {
   flex: 1;
   /* padding: 10px; */
-  background-color: #0081CF;
+  /* background-color: #0081cf; */
+  background-image: radial-gradient(circle, #2191fb, #2c91f3, #3591eb, #3f91e2, #4791da);
   color: white;
   font-weight: 300;
   /* width: 700px; */
   height: 70vh;
   margin-top: 20px;
   margin-left: 20px;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 /* .teacher_table {
@@ -37,9 +38,6 @@ td {
     padding: 10px;
 } */
 
-
-
-
 .fixed_header {
   width: 100%;
   border-collapse: collapse;
@@ -51,6 +49,9 @@ td {
   overflow: auto;
   height: 60vh;
 }
+.fixed_header tbody::-webkit-scrollbar {
+  display: none;
+}
 
 .fixed_header thead tr {
   display: block;
@@ -58,25 +59,28 @@ td {
 }
 
 .fixed_header thead {
-  background: #2C73D2;
+  background: #2c73d2;
   color: #fff;
   border-bottom: 1px solid #fff;
 }
 
-.fixed_header th,
+.fixed_header th {
+  padding: 10px;
+  text-align: left;
+  width: 150px;
+}
 .fixed_header td {
   padding: 10px;
   /* text-align: left; */
   width: 150px;
 }
 
-.fixed_header tbody tr{
+.fixed_header tbody tr {
   padding: 5px;
   height: 40px;
 }
 
-
-.edit:hover{
+.edit:hover {
   color: white;
   background-color: green;
 }
@@ -84,6 +88,5 @@ td {
 .tr:hover {
   background-color: #ffffff;
   cursor: pointer;
-  color: #0075C4;
+  color: #0075c4;
 }
-
