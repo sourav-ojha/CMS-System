@@ -1,39 +1,58 @@
 import React, { useState, useEffect } from "react";
-import Students from "./student/Students";
-import "./style.css";
 import { useDispatch } from "react-redux";
-import AddTeacher from "./teacher/AddTeacher";
+import { useHistory } from "react-router-dom";
+
+import Students from "./student/Students";
 import AddStudent from "./student/AddStudent";
 import Teachers from "./teacher/Teachers";
-import { fetchStudents, fetchTeachers, sortByDept } from "../action/admin";
+import AddTeacher from "./teacher/AddTeacher";
+import Loading from "../Loading";
+
+import { logOut } from "../../services/auth.service";
+
+import styles from "./admin.module.css";
+import { fetch, sortByDept } from "../../action/admin";
 
 function Admin() {
   const [currentId, setCurrentId] = useState(null);
   const [toogle, settoogle] = useState(true);
   const [dept, setDept] = useState("ALL");
+  const history = useHistory();
+
   // const Data = useSelector((state) => state.group);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (toogle) {
-      dispatch(fetchTeachers());
+      dispatch(fetch("teacher"));
     } else {
-      dispatch(fetchStudents());
+      dispatch(fetch("student"));
       dispatch(sortByDept(dept));
     }
 
     console.log("dept : ", dept);
   }, [toogle, dispatch, dept]);
 
-  // useEffect(() => {
-  // }, [dept])
+  const handleLogout = () => {
+    logOut();
+    history.push("/login");
+    window.location.reload();
+  };
 
   return (
-    <div className="container">
-      <div className="header">DashBoard</div>
-      <div className="bar">
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <div>DashBoard</div>
+        <div className={logOut} onClick={handleLogout}>
+          LogOut
+        </div>
+      </div>
+
+      <div className={styles.bar}>
         <div
-          className={toogle ? "selected toogle" : "toogle"}
+          className={
+            toogle ? `${styles.selected} ${styles.toogle}` : `${styles.toogle}`
+          }
           onClick={() => {
             settoogle(true);
             setCurrentId(null);
@@ -42,7 +61,9 @@ function Admin() {
           teacher
         </div>
         <div
-          className={toogle ? "toogle" : "selected toogle"}
+          className={
+            toogle ? `${styles.toogle}` : `${styles.selected} ${styles.toogle}`
+          }
           onClick={() => {
             settoogle(false);
             setCurrentId(null);
@@ -52,7 +73,7 @@ function Admin() {
         </div>
       </div>
       {!toogle ? (
-        <div className="dept">
+        <div className={styles.dept}>
           Sort By Department :
           <select
             name="dept"
@@ -66,7 +87,7 @@ function Admin() {
           </select>
         </div>
       ) : null}
-      <div className="content">
+      <div className={styles.content}>
         {toogle ? (
           <>
             <Teachers setCurrentId={setCurrentId} />

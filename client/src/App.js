@@ -1,14 +1,26 @@
-import React from 'react'
-import Admin from './adminComponents/Admin'
+import React from "react";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { useAuthValue } from "./helper/AuthProvider";
 
+import PrivateRoute from "./route/PrivateRoute";
+import PublicRoute from "./route/PublicRoute";
+
+import NotFound from "./components/NotFound";
+import Login from "./components/Login";
+import Main from "./Main";
 
 function App() {
-    
-    return (
-        <div className='app'>
-            <Admin />
-        </div>
-    )
+  return (
+    <div className="app">
+      <BrowserRouter>
+        <Switch>
+          <PublicRoute path="/login" component={Login} />
+          <PrivateRoute path="/" component={Main} />
+          <Route component={NotFound}></Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
 }
 
-export default App
+export default App;

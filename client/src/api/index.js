@@ -1,13 +1,18 @@
-import axios from 'axios';
+import axios from "axios";
+import { authHeader } from "../services/auth.header";
+const url = "http://localhost:4000/user";
+const url2 = "http://localhost:4000/auth";
 
-const url = 'http://localhost:5000';
+const API = axios.create({ baseURL: "http://localhost:4000" });
 
-export const fetchTeachers = () => axios.get(`${url}/admin/teachers`);
-export const createTeacher = (newMember) => axios.post(`${url}/admin/teachers`,newMember);
-export const updateTeacher = (id, update) => axios.patch(`${url}/admin/teachers/${id}`, update)
-export const deleteTeacher = (id) => axios.delete(`${url}/admin/teachers/${id}`);
+export const fetch = (role) =>
+  axios.get(`${url}/${role}`, { headers: authHeader() });
+export const createUser = (newMember) =>
+  axios.post(`${url}`, newMember, { headers: authHeader() });
+export const updateUser = (id, update) =>
+  axios.patch(`${url}/${id}`, update, { headers: authHeader() });
+export const deleteUser = (id) =>
+  axios.delete(`${url}/${id}`, { headers: authHeader() });
 
-export const fetchStudents = () => axios.get(`${url}/admin/students`);
-export const createStudent = (newMember) => axios.post(`${url}/admin/students`,newMember);
-export const updateStudent = (id, update) => axios.patch(`${url}/admin/students/${id}`, update)
-export const deleteStudent = (id) => axios.delete(`${url}/admin/students/${id}`);
+export const signIn = (data) => axios.post(`${url2}/signin`, data);
+export const signUp = (data) => axios.post(`${url2}/signup`, data);

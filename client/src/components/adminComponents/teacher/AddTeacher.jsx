@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createTeacher, deleteTeacher, updateTeacher } from "../../action/admin";
+import { createUser, deleteUser, updateUser } from "../../../action/admin";
+
+import styles from "../admin.module.css";
 
 function Addmember({ currentId, setCurrentId }) {
   const [profile, setProfile] = useState({
-    username: "",
-    fullname: "",
+    firstname: "",
+    lastname: "",
     phno: "",
     email: "",
     password: "",
+    role: "teacher",
   });
   const dispatch = useDispatch();
   const details = useSelector((state) =>
@@ -24,10 +27,10 @@ function Addmember({ currentId, setCurrentId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentId) {
-      console.log('add teachers page : ',currentId, profile)
-      dispatch(updateTeacher(currentId, profile));
+      console.log("add Users page : ", currentId, profile);
+      dispatch(updateUser(currentId, profile));
     } else {
-      dispatch(createTeacher(profile));
+      dispatch(createUser(profile));
     }
     clear();
   };
@@ -35,11 +38,12 @@ function Addmember({ currentId, setCurrentId }) {
   const clear = () => {
     setCurrentId(null);
     setProfile({
-      username: "",
-      fullname: "",
+      firstname: "",
+      lastname: "",
       phno: "",
       email: "",
       password: "",
+      role: "teacher",
     });
   };
 
@@ -52,27 +56,27 @@ function Addmember({ currentId, setCurrentId }) {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    dispatch(deleteTeacher(currentId));
-  }
+    dispatch(deleteUser(currentId));
+  };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <h2>Register</h2>
         <input
           type="text"
-          name="username"
-          id="username"
+          name="firstname"
+          id="firstname"
           onChange={handleChange}
-          value={profile.username}
+          value={profile.firstname}
           placeholder="Enter Your name"
         />
         <input
           type="text"
-          name="fullname"
-          id="fullname"
+          name="lastname"
+          id="lastname"
           onChange={handleChange}
-          value={profile.fullname}
+          value={profile.lastname}
           placeholder="Enter your Full Name"
         />
         <input
@@ -99,10 +103,24 @@ function Addmember({ currentId, setCurrentId }) {
           value={profile.password}
           placeholder="Create Passsword"
         />
-        <button type="submit">Add</button>
+        <button className={styles.btn} type="submit">
+          {currentId ? "Update" : "Add"}{" "}
+        </button>
         <div>
-          {currentId ? <button className='d' onClick={handleDelete}>Delete</button> : null}
-          <button onClick={clear}>{currentId ? `cancel` :`Clear`  }</button>
+          {currentId ? (
+            <>
+              <button className={styles.d} onClick={handleDelete}>
+                Delete
+              </button>
+              <button className={styles.btn} onClick={clear}>
+                Cancel
+              </button>{" "}
+            </>
+          ) : (
+            <button className={styles.btn} onClick={clear}>
+              Clear
+            </button>
+          )}
         </div>
       </form>
     </>

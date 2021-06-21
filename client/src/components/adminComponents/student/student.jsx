@@ -5,8 +5,8 @@ function student({ student, setCurrentId }) {
   return (
 
      <>
-        <td>{student.username}</td>
-        <td>{student.fullname}</td>
+        <td>{student.firstname}</td>
+        <td>{student.lastname}</td>
         <td>{student.phno}</td>
         <td>{student.email}</td>
         <td>{student.course}</td>

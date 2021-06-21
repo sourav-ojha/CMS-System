@@ -1,31 +1,37 @@
 import mongoose from "mongoose";
-import Student from "../models/student.js";
-import Teacher from "../models/teacher.js";
+import User from "../models/user.js";
 
-export const fetchStudents = async (req, res) => {
+export const fetch = async (req, res) => {
   try {
-    const students = await Student.find();
-    res.status(200).json(students);
+    const { role } = req.params;
+    console.log("role this: ", role);
+    const users = await User.find();
+    const result = users.filter((u) => u.role === role);
+    res.status(200).json(result);
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const fetchTeachers = async (req, res) => {
+export const fetchUser = async (req, res) => {
   try {
-    const teachers = await Teacher.find();
-    res.status(200).json(teachers);
+    const { id } = req.params;
+    console.log(id);
+    const users = await User.findById(id);
+    res.status(200).json(users);
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const createStudents = async (req, res) => {
+export const create = async (req, res) => {
+  console.log("new user creation : ");
   const data = req.body;
-  const newStudent = new Student(data);
+  console.log("new user creation : ", data);
+  const newUser = await User(data);
   try {
-    await newStudent.save();
-    res.status(201).json(newStudent);
+    await newUser.save();
+    res.status(201).json(newUser);
   } catch (error) {
     res.status(409).json({
       message: error.message,
@@ -33,53 +39,18 @@ export const createStudents = async (req, res) => {
   }
 };
 
-export const createTeachers = async (req, res) => {
-  const data = req.body;
-  const newTeacher = new Teacher(data);
-  try {
-    await newTeacher.save();
-    res.status(201).json(newTeacher);
-  } catch (error) {
-    res.status(409).json({
-      message: error.message,
-    });
-  }
-};
-
-export const updateTeacher = async (req, res) => {
-  const { id } = req.params;
-  const data = req.body;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) return res.send("no id");
-  
-  const updateData = await Teacher.findByIdAndUpdate(id, data, {new : true});
-  
-  res.json(updateData);
-};
-
-export const updateStudent = async (req, res) => {
+export const update = async (req, res) => {
   const { id } = req.params;
   const data = req.body;
   if (!mongoose.Types.ObjectId.isValid(id)) return res.send("no id");
-  
-  const updateData = await Student.findByIdAndUpdate(id, data, {new : true});
+
+  const updateData = await User.findByIdAndUpdate(id, data, { new: true });
   res.json(updateData);
 };
 
-export const deleteTeacher = async (req, res) => {
-  const { id }= req.params;
-   
+export const deleteUser = async (req, res) => {
+  const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) return res.send("no id");
-  
-  await Teacher.findByIdAndRemove(id);
+  await User.findByIdAndRemove(id);
   res.json(id);
-}
-
-export const deleteStudent = async (req, res) => {
-  const { id }= req.params;
-   
-  if (!mongoose.Types.ObjectId.isValid(id)) return res.send("no id");
-  
-  await Student.findByIdAndRemove(id);
-  res.json(id);
-}
+};
