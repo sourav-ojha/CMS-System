@@ -8,12 +8,14 @@ import PublicRoute from "./route/PublicRoute";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import Main from "./Main";
+import AdminDashboard from "./Home/AdminDashboard";
 
 function App() {
   return (
     <div className="app">
       <BrowserRouter>
         <Switch>
+          <Route path="/test" component={AdminDashboard}></Route>
           <PublicRoute path="/login" component={Login} />
           <PrivateRoute path="/" component={Main} />
           <Route component={NotFound}></Route>
