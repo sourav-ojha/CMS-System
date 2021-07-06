@@ -1,17 +1,23 @@
 import express from "express";
-import { fetchStudents, fetchTeachers, createStudents, createTeachers, updateTeacher, updateStudent, deleteTeacher, deleteStudent } from '../controller/admin.js'
-
+import {
+  fetch,
+  fetchUser,
+  create,
+  update,
+  deleteUser,
+} from "../controller/admin.js";
+import { verifyUser } from "../controller/verifyUser.js";
+ 
 const router = express.Router();
+// url : http://localhost:4000/user/
+router.get("/role/:role",verifyUser, fetch);
+router.post("/",verifyUser, create);
 
-router.get("/students", fetchStudents);
-router.post("/students", createStudents);
-router.patch('/students/:id', updateStudent)
-router.delete('/students/:id',deleteStudent)
+// fetch, delete, Update a USER !!
+router.patch("/:id",verifyUser ,update);
+router.delete("/:id",verifyUser, deleteUser);
 
+router.get("/:id",verifyUser, fetchUser);
 
-router.get("/teachers", fetchTeachers);
-router.post("/teachers", createTeachers);
-router.patch('/teachers/:id', updateTeacher)
-router.delete('/teachers/:id',deleteTeacher)
-
-export default router ; 
+export default router;
+ 

@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createStudent,
-  deleteStudent,
-  updateStudent,
-} from "../../action/admin";
-import '../style.css';
+import { createUser, deleteUser, updateUser } from "../../../action/admin";
+import styles from "../admin.module.css";
 
 function Addmember({ currentId, setCurrentId }) {
   const [profile, setProfile] = useState({
-    username: "",
-    fullname: "",
+    firstname: "",
+    lastname: "",
     phno: "",
     email: "",
     course: "",
     password: "",
+    role: "student",
   });
   const dispatch = useDispatch();
   const details = useSelector((state) =>
@@ -30,27 +27,29 @@ function Addmember({ currentId, setCurrentId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentId) {
-      dispatch(updateStudent(currentId, profile));
+      dispatch(updateUser(currentId, profile));
     } else {
-      dispatch(createStudent(profile));
+      console.log("profile : ", profile);
+      dispatch(createUser(profile));
     }
     clear();
   };
 
   const handleDelete = (e) => {
     e.preventDefault();
-    dispatch(deleteStudent(currentId));
+    dispatch(deleteUser(currentId));
   };
 
   const clear = () => {
     setCurrentId(null);
     setProfile({
-      username: "",
-      fullname: "",
+      firstname: "",
+      lastname: "",
       phno: "",
       email: "",
       course: "",
       password: "",
+      role: "student",
     });
   };
 
@@ -59,25 +58,26 @@ function Addmember({ currentId, setCurrentId }) {
       ...profile,
       [e.target.name]: e.target.value,
     });
+    console.log("profile", profile);
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <h2>Register</h2>
         <input
           type="text"
-          name="username"
-          id="username"
+          name="firstname"
+          id="firstname"
           onChange={handleChange}
-          value={profile.username}
+          value={profile.firstname}
           placeholder="Enter Your name"
         />
         <input
           type="text"
-          name="fullname"
-          id="fullname"
+          name="lastname"
+          id="lastname"
           onChange={handleChange}
-          value={profile.fullname}
+          value={profile.lastname}
           placeholder="Enter your Full Name"
         />
         <input
@@ -112,15 +112,23 @@ function Addmember({ currentId, setCurrentId }) {
           value={profile.password}
           placeholder="Create Passsword"
         />
-        <button type="submit">Add</button>
+        <button className={styles.btn} type="submit">
+          {currentId ? "Update" : "Add"}
+        </button>
         <div>
           {currentId ? (
             <>
-              <button className='d' onClick={handleDelete}>Delete</button>
-              <button onClick={clear}>Cancel</button>{" "}
+              <button className={styles.d} onClick={handleDelete}>
+                Delete
+              </button>
+              <button className={styles.btn} onClick={clear}>
+                Cancel
+              </button>{" "}
             </>
           ) : (
-            <button onClick={clear}>Clear</button>
+            <button className={styles.btn} onClick={clear}>
+              Clear
+            </button>
           )}
         </div>
       </form>

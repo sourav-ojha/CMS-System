@@ -14,6 +14,11 @@ export default (state = [], action) => {
       return state.filter((t) => t.course === "BCA");
     case "SORT_BY_DEPT_BSc":
       return state.filter((t) => t.course === "BSc");
+    case "SEARCH_DATA_NAME":
+      return state.filter((t) =>
+        t.name.toLowerCase().includes(action.search_data.toLowerCase())
+      );
+    
     default:
       return state;
   }

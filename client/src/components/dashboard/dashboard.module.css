@@ -1,0 +1,228 @@
+.dashboard {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-image: radial-gradient(
+    circle,
+    #dfeaf9,
+    #dae6f7,
+    #d6e2f6,
+    #d1ddf4,
+    #cdd9f2
+  );
+}
+
+.header {
+  padding: 25px 10px 25px 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #dfdfdf;
+  text-align: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.container {
+  display: grid;
+  place-items: center;
+}
+
+.body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* Navbar  */
+.navbar {
+  flex: 0.15;
+  height: 100%;
+  background-color: #1e1c1cf3;
+}
+
+.menu {
+  color: #fff;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.menu_item {
+  padding: 10px;
+  text-align: left;
+  display: grid;
+  color: #fff;
+  text-decoration: none;
+  grid-template-columns: 50px auto;
+  cursor: pointer;
+}
+.menu_item:hover {
+  background-color: #fff;
+  color: #000;
+}
+/* navbar ------------- */
+
+/* Head */
+.head {
+  display: flex;
+  justify-content: space-between;
+  color: #393939;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.347);
+}
+.left {
+  padding: 25px 10px 25px 50px;
+}
+.right {
+  display: flex;
+  padding: 25px 50px 25px 0;
+}
+
+
+.logout {
+  display: block;
+  position: absolute;
+  top: 50px;
+  width: 90px;
+  right: 30px;
+  height: 40px;
+  box-shadow: 1px 1px 9px 1px #a797f2;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  border: none;
+}
+
+/* Head --------------------------- */
+
+/* Overview --------------------------- */
+.cards{
+  width: auto;
+  height: auto;
+  display: flex;
+}
+.card{
+  width: 200px;
+  height: 150px;
+  display: grid;
+  grid-template-rows: auto 40px 60px;
+  text-align: center;
+  align-items: center;
+  border: 1px solid black;
+  margin: 15px;
+}
+
+.cardName{
+  color: #fff;
+  font-weight: 600;
+  background-color: #72a6d6;
+}
+
+.cardValue{
+  font-weight: 800;
+  font-size: 1.8rem;
+}
+
+/* overview end-------------------------- */
+
+.profile {
+  flex: 1;
+  height: 100vh;
+  background-color: transparent;
+}
+
+.box {
+  margin: 50px 20px 0 20px ;
+  display: grid;
+  place-items: center;
+  height: 83%;
+  background-color: #fff;
+}
+
+.details {
+  width: 500px;
+  margin: 30px;
+  display: grid;
+  justify-items: center;
+  grid-template-rows: 150px auto;
+  /* place-items: center; */
+  /* background-color: aqua; */
+  border: 1px black solid;
+  height: 60vh;
+}
+
+.label > input,
+.input > input {
+  border: none;
+  text-align: left;
+  width: fit-content;
+  background-color: transparent;
+}
+
+.label {
+  display: grid;
+  /* grid-template-columns: 100vw 400px; */
+}
+label {
+  text-align: right;
+}
+
+.avatar {
+  margin: 20px 0;
+  width: 100px;
+  height: 100px;
+  background-color: #393939;
+}
+
+.pb {
+  margin: 10px;
+  text-align: center;
+}
+
+.pbg {
+  display: grid;
+  /* padding: 10px; */
+  line-height: 2.3;
+  grid-template-columns: 75px auto;
+}
+
+.pbgi {
+  width: 250px;
+  background-color: transparent;
+}
+
+.pbgi > input {
+  width: 200px;
+  background-color: #fff;
+  border: none;
+  
+}
+.edit_btn {
+  width: 100px;
+  height: 30px;
+  background-color: #72a6d6;
+}
+
+/* <div className={style.label}>
+            <label htmlFor="firstname">Name : </label>
+            <div className={style.input}>
+              <input type="text" name="firstname" id="firstname" />
+              <input type="text" name="lasttname" id="lastname" />
+            </div>
+          </div>
+          <div className={style.label}>
+            <label htmlFor="email">Email ID : </label>
+            <input type="text" name="email" id="email" />
+          </div>
+          <div className={style.label}>
+            <label htmlFor="phno">Ph no : </label>
+            <input type="text" name="phno" id="phno" />
+          </div>
+          <div className={style.label}>
+            <label htmlFor="course">Course : </label>
+            <input type="text" name="course" id="course" />
+          </div>
+          <div className={style.label}>
+            <label htmlFor="rolno">Roll no : </label>
+            <input type="text" name="rollno" id="rollno" />
+          </div> */

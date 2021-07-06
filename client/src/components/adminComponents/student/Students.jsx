@@ -22,12 +22,12 @@ function Students({ setCurrentId }) {
           </thead>
           <tbody>
             {student
-            .sort((a, b) => a.fullname.localeCompare(b.fullname))
-            .map((s) => (
-              <tr key={s._id} className={styles.tr}>
-                <Student student={s} setCurrentId={setCurrentId} />
-              </tr>
-            ))}
+              .sort((a, b) => a.firstname.localeCompare(b.firstname))
+              .map((s) => (
+                <tr key={s._id} className={styles.tr}>
+                  <Student student={s} setCurrentId={setCurrentId} />
+                </tr>
+              ))}
           </tbody>
         </table>
       )}

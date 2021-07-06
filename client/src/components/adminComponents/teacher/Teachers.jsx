@@ -13,8 +13,8 @@ function Teachers({ setCurrentId }) {
         <table className={styles.fixed_header}>
           <thead>
             <tr>
-              <th>User Name </th>
-              <th>Full Name </th>
+              <th>First Name </th>
+              <th>Last Name </th>
               <th>Phone No </th>
               <th>Email ID </th>
             </tr>
@@ -23,7 +23,7 @@ function Teachers({ setCurrentId }) {
             
             
               {teacher
-                .sort((a, b) => a.fullname.localeCompare(b.fullname))
+                .sort((a, b) => a.firstname.localeCompare(b.firstname))
                 .map((t) => (
                   <tr key={t._id} name={t.fullname} className={styles.tr}>
                     <Teacher teacher={t} setCurrentId={setCurrentId} />
