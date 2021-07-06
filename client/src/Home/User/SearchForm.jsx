@@ -1,53 +1,66 @@
 import { SearchRounded } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { fetch, search } from "../../action/admin";
 import styles from "./studentPage.module.css";
 import StudentTable from "./StudentTable";
 import TeacherTable from "./TeacherTable";
 
 const SearchForm = () => {
-  const user = {
-    rollno: "1",
-    name: "sourav ojha",
-    email: "subham@gmail.com",
-    course: "BCA",
-  };
-  const { role } = useParams();
+  const dispatch = useDispatch();
+  const { Role } = useParams();
+  const user = useSelector((state) => state.group);
+  const [searchData, setSearchData] = useState("");
   const [isTeacher, setTeacher] = useState(false);
 
   useEffect(() => {
-    if (role === "teacher") setTeacher(true);
-    else if (role === "student") setTeacher(false);
+    if (Role === "teacher") {
+      setTeacher(true);
+    } else if (Role === "student") setTeacher(false);
     else setTeacher(null);
-  }, [role]);
+    dispatch(fetch(Role));
+  }, [Role]);
+
+  useEffect(() => {
+    dispatch(fetch(Role));
+    dispatch(search(searchData, Role));
+  }, [searchData, Role]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Searching");
+    dispatch(search(searchData, Role));
   };
   return (
     <div className={styles.body}>
       <div className={`${styles.showHead} ${styles.search_head}`}>
-        <div>Search By</div>
-        <div>
-          <select name="choice">
-            <option value="firstname">First Name</option>
-            <option value="lastname">Last Name</option>
-            <option value="rollno">Roll no</option>
-          </select>
-        </div>
+        <div></div>
+        <div></div>
         <form onSubmit={handleSubmit} className={styles.search_field}>
-          <input type="search" name="search" placeholder="Search HERE" />
+          <input
+            type="search"
+            name="search"
+            placeholder="Search HERE"
+            value={searchData}
+            onChange={(e) => setSearchData(e.target.value)}
+          />
         </form>
         <div className={styles.search_icon} onClick={handleSubmit}>
           <SearchRounded />
         </div>
       </div>
-      {isTeacher ? (
-        <TeacherTable profile={user} />
-      ) : (
-        <StudentTable profile={user} />
-      )}
+
+      {user &&
+        user
+          .sort((a, b) => a.firstname.localeCompare(b.firstname))
+          .map((u) =>
+            isTeacher ? (
+              <TeacherTable profile={u} />
+            ) : (
+              <StudentTable profile={u} />
+            )
+          )}
     </div>
   );
 };

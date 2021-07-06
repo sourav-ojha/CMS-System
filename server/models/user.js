@@ -9,6 +9,9 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  name: {
+    type: String,
+  },
   phno: {
     type: Number,
     unique: true,
@@ -40,15 +43,6 @@ const userSchema = mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 
 export default User;
-
-
-
-
-
-
-
-
-
 
 // {
 //   "firstname": "teacher",

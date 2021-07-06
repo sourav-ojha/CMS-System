@@ -1,6 +1,8 @@
 import React from "react";
 import { Route, Redirect, useRouteMatch } from "react-router-dom";
 import Admin from "./components/adminComponents/Admin";
+import AdminDashboard from "./Home/AdminDashboard";
+
 import Dashboard from "./components/dashboard/Dashboard";
 import { useAuthValue } from "./helper/AuthProvider";
 
@@ -11,7 +13,7 @@ const Main = () => {
   return (
     <>
       <Route path="/dashboard" >
-        {loggedUser.role === "admin" ? <Admin /> : <Dashboard />}{" "}
+        {loggedUser.role === "admin" ? <AdminDashboard /> : <Dashboard />}{" "}
       </Route>
     </>
   );

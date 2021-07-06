@@ -10,7 +10,7 @@ import { verifyUser } from "../controller/verifyUser.js";
  
 const router = express.Router();
 // url : http://localhost:4000/user/
-router.get("/:role",verifyUser, fetch);
+router.get("/role/:role",verifyUser, fetch);
 router.post("/",verifyUser, create);
 
 // fetch, delete, Update a USER !!

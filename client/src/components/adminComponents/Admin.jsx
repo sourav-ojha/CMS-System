@@ -93,7 +93,7 @@ function Admin() {
             <Teachers setCurrentId={setCurrentId} />
             <AddTeacher currentId={currentId} setCurrentId={setCurrentId} />
           </>
-        ) : (
+        ) : ( 
           <>
             <Students setCurrentId={setCurrentId} />
             <AddStudent currentId={currentId} setCurrentId={setCurrentId} />

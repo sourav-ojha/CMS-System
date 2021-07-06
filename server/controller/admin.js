@@ -16,9 +16,11 @@ export const fetch = async (req, res) => {
 export const fetchUser = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(' ----------------------ID--------------');
     console.log(id);
-    const users = await User.findById(id);
-    res.status(200).json(users);
+    const user = await User.findById(id);
+    console.log(user)
+    res.status(200).json(user);
   } catch (error) {
     console.log(error.message);
   }
@@ -26,9 +28,21 @@ export const fetchUser = async (req, res) => {
 
 export const create = async (req, res) => {
   console.log("new user creation : ");
-  const data = req.body;
-  console.log("new user creation : ", data);
-  const newUser = await User(data);
+  const { firstname, lastname, phno, course, rollno, email, role, password } =
+    req.body;
+    const name = firstname + ' ' + lastname;
+  const newUser = await User({
+    firstname,
+    lastname,
+    name ,
+    phno,
+    course,
+    rollno,
+    email,
+    role,
+    password,
+  });
+  console.log(newUser)
   try {
     await newUser.save();
     res.status(201).json(newUser);

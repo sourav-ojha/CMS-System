@@ -15,7 +15,7 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Switch>
-          <Route path="/test" component={AdminDashboard}></Route>
+          {/* <Route path="/test" component={AdminDashboard}></Route> */}
           <PublicRoute path="/login" component={Login} />
           <PrivateRoute path="/" component={Main} />
           <Route component={NotFound}></Route>

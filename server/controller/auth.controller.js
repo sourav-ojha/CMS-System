@@ -15,9 +15,9 @@ export const signin = async (req, res) => {
       const { password, ...userWithoutPassword } = user;
       const result = {
         ...userWithoutPassword._doc,
-        accessToken : token,
+        accessToken: token,
       };
-      console.log("user logged in !!")
+      console.log("user logged in !!");
       res.status(200).json(result);
     } else {
       res.status(401).json({
@@ -33,9 +33,23 @@ export const signin = async (req, res) => {
 
 export const signup = async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const { firstname, lastname, phno, course, rollno, email, role, password } =
+      req.body;
+
+    const user = await User.findOne({ email });
     if (!user) {
-      const newUser = await User(req.body);
+      const name = firstname + " " + lastname;
+      const newUser = await User({
+        firstname,
+        lastname,
+        name,
+        phno,
+        course,
+        rollno,
+        email,
+        role,
+        password,
+      });
       console.log(newUser);
       await newUser.save();
       const token = genToken(newUser);
@@ -43,7 +57,7 @@ export const signup = async (req, res) => {
       const { password, ...userWithoutPassword } = newUser;
       const result = {
         ...userWithoutPassword._doc,
-        accessToken : token,
+        accessToken: token,
       };
       res.status(200).json(result);
     } else {

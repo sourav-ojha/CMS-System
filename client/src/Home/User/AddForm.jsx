@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { createUser } from "../../action/admin";
 import styles from "./studentPage.module.css";
 const AddForm = () => {
+  const { Role } = useParams();
+  console.log(Role, "======role is <=");
   const initialState = {
     firstname: "",
     lastname: "",
@@ -9,31 +13,59 @@ const AddForm = () => {
     course: "",
     rollno: "",
     email: "",
-    role: "student",
+    role: Role,
     password: "",
     cpassword: "",
   };
-  const {role} = useParams();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState(initialState);
+  useEffect(() => {
+    setFormData(initialState);
+  }, [Role]);
+
+  const [User_Register_status, setUser_Register_status] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+      // role: Role,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    console.log("before send", formData);
+    try {
+      dispatch(createUser(formData));
+      setUser_Register_status(true);
+      setUser_Register_status(true);
+    } catch (error) {
+      console.log(error);
+    }
+
+    setFormData(initialState);
   };
+
+  useEffect(() => {
+    if (User_Register_status) {
+      setTimeout(() => {
+        setUser_Register_status(false);
+      }, 5000);
+    }
+  }, [User_Register_status]);
 
   return (
     <div className={styles.body}>
       <div className={`${styles.showHead} ${styles.form_head}`}>
-        <div>Register {role}</div>
+        <div>Register {Role}</div>
       </div>
-      <div className={`${styles.showHead} ${styles.empty}`}></div>
+      <div className={`${styles.showHead} ${styles.empty} `}>
+        {User_Register_status && (
+          <div className={styles.show_response}> User Registered success </div>
+        )}
+      </div>
 
       <div className={styles.container}>
         <div className={styles.form}>

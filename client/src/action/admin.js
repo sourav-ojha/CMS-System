@@ -62,3 +62,13 @@ export const sortByDept = (dept) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const search = (search_data, role) => async (dispatch) => {
+  try {
+    const { data } = await api.fetch(role);
+
+    dispatch({ type: "SEARCH_DATA_NAME", payload: data, search_data });
+  } catch (error) {
+    console.log(error);
+  }
+};
